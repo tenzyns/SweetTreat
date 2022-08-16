@@ -1,0 +1,30 @@
+package org.logging;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.time.LocalTime;
+
+@Getter
+@Setter
+public class Courier {
+
+    private String name;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private Boolean isBoxRefrigerated;
+    private double maxDistance;
+    private BigDecimal ratePerMile;
+
+    public Courier(String name, String startTime, String endTime, Boolean isBoxRefrigerated, double maxDistance, double ratePerMile) {
+        this.name = name;
+        this.startTime = LocalTime.parse(startTime);
+        this.endTime = LocalTime.parse(endTime);
+        this.isBoxRefrigerated = isBoxRefrigerated;
+        this.maxDistance = maxDistance;
+        this.ratePerMile = BigDecimal.valueOf(ratePerMile);
+    }
+
+
+}
