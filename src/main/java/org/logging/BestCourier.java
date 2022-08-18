@@ -29,7 +29,7 @@ public class BestCourier {
         }
         LOGGER.addHandler(fileHandler);
     }
-    public void selectCourier(String time, double distance, boolean refrigeration) {
+    public Courier selectCourier(String time, double distance, boolean refrigeration) {
         CourierList courierList = new CourierList();
         LocalTime orderTime = LocalTime.parse(time);
         ArrayList<Courier> screenedCouriers = new ArrayList<>();
@@ -70,5 +70,6 @@ public class BestCourier {
             System.out.println("The cheapest courier for your delivery is " + cheapest.getName());
             System.out.println("Your delivery cost would be: £" + courierCost);
         }
+        return cheapest;
     }
 }
