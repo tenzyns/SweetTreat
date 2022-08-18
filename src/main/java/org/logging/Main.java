@@ -5,12 +5,17 @@ public class Main {
 
         BestCourier bestCourier = new BestCourier();
 //        bestCourier.selectCourier("11:00", 4.5, true);
-//        bestCourier.selectCourier("12:50", 5, true);
-//        bestCourier.selectCourier("11:00", 3.5, false);
+//        bestCourier.selectCourier("12:50", 4.5, false);
+
+//       all couriers eligible, but only price compared
+//        bestCourier.selectCourier("11:00", 2, false);
+
         //with distance exception
         bestCourier.selectCourier("16:50", 3.5, false);
+
         //with time exception
 //        bestCourier.selectCourier("17:50", 3, false);
+
         //No error
      //   bestCourier.selectCourier("16:20", 4, false);
 

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
+import java.util.Comparator;
 
 @Getter
 @Setter
@@ -25,6 +26,5 @@ public class Courier {
         this.maxDistance = maxDistance;
         this.ratePerMile = BigDecimal.valueOf(ratePerMile);
     }
-
 
 }
