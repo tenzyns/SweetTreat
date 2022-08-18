@@ -39,13 +39,13 @@ class BestCourierTest {
         assertEquals("Bobby", bestCourier.getCheapest().getName());
     }
 
-//    @Test
-//    @DisplayName("Selecting courier with out of bound criteria")
-   // public void shouldThrowException() throws Exception {
-       // BestCourier bestCourier = new BestCourier();
+    @Test
+    @DisplayName("Selecting courier with out of bound criteria")
+    public void shouldThrowException() throws Exception {
+        BestCourier bestCourier = new BestCourier();
 
-       // assertAll(()-> assertThrows(ArrayIndexOutOfBoundsException.class, bestCourier.selectCourier("17:20", 3, false)));
+        assertThrows(IllegalArgumentException.class, bestCourier.selectCourier("17:20", 3, false));
 
-    //}
+    }
 
 }

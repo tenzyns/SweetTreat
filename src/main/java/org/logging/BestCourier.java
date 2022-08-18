@@ -3,15 +3,33 @@ package org.logging;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.*;
+
 @Getter
 @Setter
 public class BestCourier {
     private Courier cheapest;
+    private BigDecimal courierCost;
+    private static final Logger LOGGER = Logger.getLogger(BestCourier.class.getName());
 
-    public void selectCourier(String time, double distance, boolean refrigeration) throws Exception {
+    static {
+        FileHandler fileHandler = null;
+        try {
+            fileHandler = new FileHandler(BestCourier.class.getSimpleName() + ".log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            Filter filterAll = s -> true;
+            fileHandler.setFilter(filterAll);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        LOGGER.addHandler(fileHandler);
+    }
+    public void selectCourier(String time, double distance, boolean refrigeration) {
         CourierList courierList = new CourierList();
         LocalTime orderTime = LocalTime.parse(time);
         ArrayList<Courier> screenedCouriers = new ArrayList<>();
@@ -32,21 +50,25 @@ public class BestCourier {
             }
         }
         if(screenedCouriers.size() == 0) {//if no courier satisfies the requirement
-            throw new Exception("Courier not available for your requirement due to the following reasons: \n" + String.valueOf(failMsg));
+            try {
+                throw new Exception("Courier not available for your requirement due to the following reasons: \n" + failMsg);
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, "Unable to select a suitable courier for this order, made at " + orderTime + ", for a distance of " + distance + " miles.");
+                e.printStackTrace();
+            }
         } else {
             cheapest = screenedCouriers.get(0);
             int size = screenedCouriers.size();
-            //to delete these s.out below
-            System.out.println("screened courier array size: " + size);
-            System.out.println("screened courier1 " + screenedCouriers.get(0).getName());
             for (int j = 1; j < size; j++) {
                     if (screenedCouriers.get(j).getRatePerMile().compareTo(cheapest.getRatePerMile()) < 0) {
                         cheapest = screenedCouriers.get(j);
                     }
             }
-        }
-        System.out.println("The cheapest courier for your delivery is " + cheapest.getName());
-        System.out.println("Your delivery cost would be: £" + BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()));
+            setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
+            LOGGER.log(Level.INFO, "Most suitable courier selected for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
 
+            System.out.println("The cheapest courier for your delivery is " + cheapest.getName());
+            System.out.println("Your delivery cost would be: £" + courierCost);
+        }
     }
 }
