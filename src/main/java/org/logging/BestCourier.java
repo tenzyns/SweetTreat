@@ -8,9 +8,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.logging.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -64,10 +65,8 @@ public class BestCourier {
             for (Courier i: screenedCouriers) {
                 System.out.println(i);
             }
-            screenedCouriers.sort((Comparator.<Courier>comparingInt(o1 -> o1.getRatePerMile().intValue())
-                    .thenComparingInt(o2 -> o2.getRatePerMile().intValue())));
-
-            for (Courier i: screenedCouriers) {
+            List<Courier> sortedList = screenedCouriers.stream().sorted(Comparator.comparingInt(Courier::getIntRatePerMile)).collect(Collectors.toList());
+            for (Courier i: sortedList) {
                 System.out.println(i);
             }
 

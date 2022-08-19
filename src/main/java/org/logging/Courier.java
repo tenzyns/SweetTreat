@@ -18,6 +18,10 @@ public class Courier {
     private double maxDistance;
     private BigDecimal ratePerMile;
 
+    public int getIntRatePerMile(){ // for use in sorting list
+        return ratePerMile.intValue();
+    }
+
     public Courier(String name, String startTime, String endTime, Boolean isBoxRefrigerated, double maxDistance, double ratePerMile) {
         this.name = name;
         this.startTime = LocalTime.parse(startTime);
@@ -26,12 +30,6 @@ public class Courier {
         this.maxDistance = maxDistance;
         this.ratePerMile = BigDecimal.valueOf(ratePerMile);
     }
-
-    public static Comparator<Courier> rateCompare = (o1, o2) -> {
-        int rate1 = o1.getRatePerMile().intValue();
-        int rate2 = o2.getRatePerMile().intValue();
-        return rate1 - rate2;
-    };
 
     @Override
     public String toString() {
