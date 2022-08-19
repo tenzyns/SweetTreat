@@ -39,8 +39,6 @@ public class BestCourier {
             if(refrigeration && orderTime.isAfter(i.getStartTime()) && orderTime.isBefore(i.getEndTime()) &&
                     i.getIsBoxRefrigerated() && i.getMaxDistance() >= distance) {
                 screenedCouriers.add(i);
-                System.out.println(i.getIsBoxRefrigerated());
-                System.out.println(i.getName());
             } else if(!refrigeration && orderTime.isAfter(i.getStartTime()) && orderTime.isBefore(i.getEndTime())
                      && i.getMaxDistance() >= distance) {
                 screenedCouriers.add(i);
