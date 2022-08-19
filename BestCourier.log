@@ -1,2 +1,2 @@
-Aug 19, 2022 12:31:52 PM org.logging.BestCourier selectCourier
-INFO: Most suitable courier selected for this order is Robert for the request time 16:20 and will cost £7.42
+Aug 19, 2022 3:11:06 PM org.logging.BestCourier selectCourier
+WARNING: Unable to select a suitable courier for this order, made at 16:40, for a distance of 4.5 miles, refrigeration requirement false

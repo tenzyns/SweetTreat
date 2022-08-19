@@ -5,16 +5,16 @@ public class Main {
 
         BestCourier bestCourier = new BestCourier();
 //        Cheapest with refrigeration :Bobby
-        bestCourier.selectCourier("11:00", 4, true);
-
-        //edge cases :Bobby
-//        bestCourier.selectCourier("12:50", 5, false);
+//        bestCourier.selectCourier("11:00", 4, true);
 
 //       Cheapest without refrigeration and with the right distance : Martin
 //        bestCourier.selectCourier("11:00", 2, false);
 
+        //time and distance exception
+        bestCourier.selectCourier("16:40", 4.5, false);
+
         //with distance exception
-//        bestCourier.selectCourier("16:50", 3.5, false);
+//        bestCourier.selectCourier("11:50", 5.5, false);
 
         //with time exception
 //        bestCourier.selectCourier("17:50", 3, false);

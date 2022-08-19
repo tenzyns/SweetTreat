@@ -52,7 +52,7 @@ public class BestCourier {
             try {
                 throw new IllegalArgumentException("Courier not available for your requirement due to the following reasons: \n" + failMsg);
             } catch (Exception e) {
-                LOGGER.log(Level.WARNING, "Unable to select a suitable courier for this order, made at " + orderTime + ", for a distance of " + distance + " miles.");
+                LOGGER.log(Level.WARNING, "Unable to select a suitable courier for this order, made at " + orderTime + ", for a distance of " + distance + " miles, refrigeration requirement: " + refrigeration);
                 e.printStackTrace();
             }
         } else {
