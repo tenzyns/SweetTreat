@@ -30,7 +30,7 @@ public class Courier {
     public static Comparator<Courier> rateCompare = (o1, o2) -> {
         int rate1 = o1.getRatePerMile().intValue();
         int rate2 = o2.getRatePerMile().intValue();
-        return Integer.compare(rate1, rate2);
+        return rate1 - rate2;
     };
 
     @Override

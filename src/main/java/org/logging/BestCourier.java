@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.*;
 
 @Getter
@@ -63,20 +64,22 @@ public class BestCourier {
             for (Courier i: screenedCouriers) {
                 System.out.println(i);
             }
-            screenedCouriers.sort(Courier.rateCompare);
+            screenedCouriers.sort((Comparator.<Courier>comparingInt(o1 -> o1.getRatePerMile().intValue())
+                    .thenComparingInt(o2 -> o2.getRatePerMile().intValue())));
+
             for (Courier i: screenedCouriers) {
                 System.out.println(i);
             }
 
             cheapest = screenedCouriers.get(0);
-//            int size = screenedCouriers.size();
-//            for (int j = 1; j < size; j++) {
-//                    if (screenedCouriers.get(j).getRatePerMile().compareTo(cheapest.getRatePerMile()) < 0) {
-//                        cheapest = screenedCouriers.get(j);
-//                    }
-//            }
-//            setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
-//            LOGGER.log(Level.INFO, "Most suitable courier selected for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
+            int size = screenedCouriers.size();
+            for (int j = 1; j < size; j++) {
+                    if (screenedCouriers.get(j).getRatePerMile().compareTo(cheapest.getRatePerMile()) < 0) {
+                        cheapest = screenedCouriers.get(j);
+                    }
+            }
+            setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
+            LOGGER.log(Level.INFO, "Most suitable courier for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
 //
 //            System.out.println("The cheapest courier for your delivery is " + cheapest.getName());
 //            System.out.println("Your delivery cost would be: £" + courierCost);
