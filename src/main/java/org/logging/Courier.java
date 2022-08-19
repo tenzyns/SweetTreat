@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
+import java.util.Comparator;
 
 @Getter
 @Setter
@@ -26,5 +27,15 @@ public class Courier {
         this.ratePerMile = BigDecimal.valueOf(ratePerMile);
     }
 
+    public static Comparator<Courier> rateCompare = (o1, o2) -> {
+        int rate1 = o1.getRatePerMile().intValue();
+        int rate2 = o2.getRatePerMile().intValue();
+        return Integer.compare(rate1, rate2);
+    };
+
+    @Override
+    public String toString() {
+        return "[Courier: " + name + ", cost per mile: £" + ratePerMile + " delivers up to " + maxDistance + " miles]";
+    }
 
 }
