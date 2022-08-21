@@ -42,8 +42,6 @@ public class BestCourier {
             if(refrigeration && orderTime.isAfter(i.getStartTime()) && orderTime.isBefore(i.getEndTime()) &&
                     i.getIsBoxRefrigerated() && i.getMaxDistance() >= distance) {
                 screenedCouriers.add(i);
-                System.out.println(i.getIsBoxRefrigerated());
-                System.out.println(i.getName());
             } else if(!refrigeration && orderTime.isAfter(i.getStartTime()) && orderTime.isBefore(i.getEndTime())
                      && i.getMaxDistance() >= distance) {
                 screenedCouriers.add(i);
@@ -55,9 +53,9 @@ public class BestCourier {
         }
         if(screenedCouriers.size() == 0) {//if no courier satisfies the requirement
             try {
-                throw new Exception("Courier not available for your requirement due to the following reasons: \n" + failMsg);
+                throw new IllegalArgumentException("Courier not available for your requirement due to the following reasons: \n" + failMsg);
             } catch (Exception e) {
-                LOGGER.log(Level.WARNING, "Unable to select a suitable courier for this order, made at " + orderTime + ", for a distance of " + distance + " miles.");
+                LOGGER.log(Level.WARNING, "Unable to select a suitable courier for this order, made at " + orderTime + ", for a distance of " + distance + " miles, refrigeration requirement: " + refrigeration);
                 e.printStackTrace();
             }
         } else {
@@ -73,15 +71,12 @@ public class BestCourier {
             cheapest = screenedCouriers.get(0);
             int size = screenedCouriers.size();
             for (int j = 1; j < size; j++) {
-                    if (screenedCouriers.get(j).getRatePerMile().compareTo(cheapest.getRatePerMile()) < 0) {
-                        cheapest = screenedCouriers.get(j);
-                    }
+                if (screenedCouriers.get(j).getRatePerMile().compareTo(cheapest.getRatePerMile()) < 0) {
+                    cheapest = screenedCouriers.get(j);
+                }
             }
         setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
         LOGGER.log(Level.INFO, "Most suitable courier for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
-
-//            System.out.println("The cheapest courier for your delivery is " + cheapest.getName());
-//            System.out.println("Your delivery cost would be: £" + courierCost);
 
         return cheapest;
     }
