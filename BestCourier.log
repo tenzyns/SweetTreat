@@ -1,2 +1,2 @@
-Aug 21, 2022 11:26:14 AM org.logging.BestCourier selectCourier
-INFO: Most suitable courier for this order is Tenzin for the request time 11:00 and will cost £4.35
+Aug 21, 2022 11:51:04 AM org.logging.BestCourier selectCourier
+INFO: Most suitable courier for this order is Martin for the request time 10:00 and will cost £3.75

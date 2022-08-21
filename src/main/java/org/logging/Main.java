@@ -13,7 +13,7 @@ public class Main {
 //        bestCourier.selectCourier("12:50", 5, true);
 
 //        Rider ranking list extension
-        bestCourier.selectCourier("11:00", 3, false);
+//        bestCourier.selectCourier("11:00", 3, false);
 
         //with distance exception
 //        bestCourier.selectCourier("16:50", 3.5, false);
@@ -23,8 +23,8 @@ public class Main {
         //No error
      //   bestCourier.selectCourier("16:20", 4, false);
 
-//        bestCourier.selectCourier("16:40", 4.5, false);
-       // bestCourier.selectCourier("17:20", 3, false);
+//        Rider ranking with 2 couriers
+        bestCourier.selectCourier("10:00", 2.5, false);
 
 
     }
