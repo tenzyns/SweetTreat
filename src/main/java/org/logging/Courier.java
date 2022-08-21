@@ -18,8 +18,8 @@ public class Courier {
     private double maxDistance;
     private BigDecimal ratePerMile;
 
-    public int getIntRatePerMile(){ // for use in sorting list
-        return ratePerMile.intValue();
+    public double getDoubleRatePerMile(){ // for use in sorting list
+        return ratePerMile.doubleValue();
     }
 
     public Courier(String name, String startTime, String endTime, Boolean isBoxRefrigerated, double maxDistance, double ratePerMile) {

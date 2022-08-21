@@ -1,5 +1,10 @@
 package org.logging;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -7,7 +12,7 @@ public class Main {
 //        bestCourier.selectCourier("11:00", 4.5, true);
 //        bestCourier.selectCourier("12:50", 5, true);
 
-//        all eligible except for price
+//        Rider ranking list extension
         bestCourier.selectCourier("11:00", 3, false);
 
         //with distance exception
@@ -20,6 +25,7 @@ public class Main {
 
 //        bestCourier.selectCourier("16:40", 4.5, false);
        // bestCourier.selectCourier("17:20", 3, false);
+
 
     }
 }

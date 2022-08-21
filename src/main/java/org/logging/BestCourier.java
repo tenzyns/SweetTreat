@@ -65,9 +65,9 @@ public class BestCourier {
             for (Courier i: screenedCouriers) {
                 System.out.println(i);
             }
-            List<Courier> sortedList = screenedCouriers.stream().sorted(Comparator.comparingInt(Courier::getIntRatePerMile)).collect(Collectors.toList());
-            for (Courier i: sortedList) {
-                System.out.println(i);
+            System.out.println("<---Before and after sorting ---> ");
+            List<Courier> sortedList = screenedCouriers.stream().sorted(Comparator.comparingDouble(Courier::getDoubleRatePerMile)).collect(Collectors.toList());
+            sortedList.forEach(System.out::println);
             }
 
             cheapest = screenedCouriers.get(0);
@@ -77,12 +77,12 @@ public class BestCourier {
                         cheapest = screenedCouriers.get(j);
                     }
             }
-            setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
-            LOGGER.log(Level.INFO, "Most suitable courier for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
-//
+        setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
+        LOGGER.log(Level.INFO, "Most suitable courier for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
+
 //            System.out.println("The cheapest courier for your delivery is " + cheapest.getName());
 //            System.out.println("Your delivery cost would be: £" + courierCost);
-        }
+
         return cheapest;
     }
 }
