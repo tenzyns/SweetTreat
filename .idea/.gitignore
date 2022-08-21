@@ -1,6 +1,8 @@
 # Default ignored files
+.idea
 /shelf/
 /workspace.xml
+*/target/**
 /target/
-/BestCourier.log/
-
+*/*log
+*/Main.java

@@ -1,2 +1,4 @@
-Aug 19, 2022 3:11:06 PM org.logging.BestCourier selectCourier
-WARNING: Unable to select a suitable courier for this order, made at 16:40, for a distance of 4.5 miles, refrigeration requirement false
+Aug 21, 2022 2:10:52 PM org.logging.BestCourier selectCourier
+INFO: Most suitable courier for this order is Martin for the request time 11:00 and will cost £3.00
+Aug 21, 2022 2:10:52 PM org.logging.BestCourier selectCourier
+INFO: Most suitable courier for this order is Martin for the request time 10:00 and will cost £3.75

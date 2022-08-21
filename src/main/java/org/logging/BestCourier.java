@@ -8,7 +8,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.logging.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -56,6 +59,15 @@ public class BestCourier {
                 e.printStackTrace();
             }
         } else {
+
+            for (Courier i: screenedCouriers) {
+                System.out.println(i);
+            }
+            System.out.println("<---Before and after sorting ---> ");
+            List<Courier> sortedList = screenedCouriers.stream().sorted(Comparator.comparingDouble(Courier::getDoubleRatePerMile)).collect(Collectors.toList());
+            sortedList.forEach(System.out::println);
+            }
+
             cheapest = screenedCouriers.get(0);
             int size = screenedCouriers.size();
             for (int j = 1; j < size; j++) {
@@ -63,10 +75,9 @@ public class BestCourier {
                     cheapest = screenedCouriers.get(j);
                 }
             }
-            setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
-            LOGGER.log(Level.INFO, "Most suitable courier selected for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
+        setCourierCost(BigDecimal.valueOf(distance).multiply(cheapest.getRatePerMile()).setScale(2, RoundingMode.HALF_EVEN));
+        LOGGER.log(Level.INFO, "Most suitable courier for this order is "+ cheapest.getName() + " for the request time " + orderTime + " and will cost £" + courierCost);
 
-        }
         return cheapest;
     }
 }
