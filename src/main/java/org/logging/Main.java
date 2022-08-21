@@ -1,10 +1,5 @@
 package org.logging;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -20,10 +15,10 @@ public class Main {
 //        bestCourier.selectCourier("11:00", 4, true);
 
 //       Cheapest without refrigeration and with the right distance : Martin
-//        bestCourier.selectCourier("11:00", 2, false);
+        bestCourier.selectCourier("11:00", 2, false);
 
         //time and distance exception
-        bestCourier.selectCourier("16:40", 4.5, false);
+//        bestCourier.selectCourier("16:40", 4.5, false);
 
         //with distance exception
 //        bestCourier.selectCourier("11:50", 5.5, false);
